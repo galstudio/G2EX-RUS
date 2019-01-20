@@ -6,11 +6,11 @@
  */
 
 return [
-    '/' => 'topic/index', 
-    'tab/all' => 'topic/home', 
-    'tab/members' => 'topic/members', 
-    'tab/nodes' => 'topic/nodes', 
-    'recent' => 'topic/recent', 
+    '/' => 'topic/index',
+    'tab/all' => 'topic/home',
+    'tab/members' => 'topic/members',
+    'tab/nodes' => 'topic/nodes',
+    'recent' => 'topic/recent',
     'tab/<name:(\w|-)+>' => 'topic/navi',
     'nodes' => 'node/index',
     't/<id:\d+>' => 'topic/view',
@@ -35,7 +35,7 @@ return [
     'login'=>'site/login',
     'signout'=>'site/signout',
     'forgot'=>'site/forgot-password',
-    'admin' => 'admin/setting/all',
+    'admin/setting/all' => 'admin/setting/all',
     'more' => 'site/more',
     'mission/daily' => 'service/signin',
     'balance' => 'my/balance',
