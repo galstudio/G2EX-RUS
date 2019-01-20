@@ -29,7 +29,7 @@ class ForgotPasswordForm extends Model
             ['email', 'exist',
                 'targetClass' => '\app\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'message' => 'С таким email пользователя нет.'
             ],
         ];
     }
@@ -37,16 +37,16 @@ class ForgotPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => '注册邮箱',
+            'email' => 'Ваш Email',
         ];
     }
 
     public function apply()
     {
         if ( !self::findUser() ) {
-            throw new InvalidParamException('该邮件对应的用户不存在');
+            throw new InvalidParamException('Пользователь с таким Email не существует');
         } else if ( !self::sendEmail() ) {
-            throw new InvalidParamException('邮件发送出错，请重新申请或联系站长('.Yii::$app->params['settings']['admin_email'].')');
+            throw new InvalidParamException('Сообщение об ошибке отправлено, пожалуйста, подайте заявку повторно или свяжитесь с веб-мастером ('.Yii::$app->params['settings']['admin_email'].')');
         } else {
             return true;
         }
@@ -79,7 +79,7 @@ class ForgotPasswordForm extends Model
                 $rtnCd = Yii::$app->getMailer()->compose('passwordResetToken-text', ['token' => $token])
                     ->setFrom([$settings['mailer_username'] => $settings['site_name']])
                     ->setTo($this->email)
-                    ->setSubject($settings['site_name']. '密码重置')
+                    ->setSubject($settings['site_name']. ' сброс пароля')
                     ->send();
             } catch(\Exception $e) {
                 return false;

@@ -8,19 +8,19 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 $session = Yii::$app->getSession();
 $settings = Yii::$app->params['settings'];
-$this->title = Html::encode($settings['site_name']). ' › 通过电子邮件重设密码';
-$title = '通过电子邮件重设密码';
+$this->title = Html::encode($settings['site_name']). ' › Сброс пароля';
+$title = 'Сброс пароля';
 ?>
 <?=$this->render('@app/views/common/login'); ?>
 </div>
 <div id="Main">
 <div class="sep20"></div>
 <div class="box">
-<div class="header"><?=Html::a(Html::encode($settings['site_name']), ['/']); ?> <span class="chevron">&nbsp;›&nbsp;</span> 通过电子邮件重设密码</div>
+<div class="header"><?=Html::a(Html::encode($settings['site_name']), ['/']); ?> <span class="chevron">&nbsp;›&nbsp;</span> Отправить сообщение на Email</div>
 <?php $form = ActiveForm::begin(['id' => 'form']); ?>
 <?=$form->field($model, 'email')->textInput(['maxlength'=>50]); ?>
 <div class="sep5"></div>
-<?=Html::submitButton('继续', ['class' => 'super normal button']);?>
+<?=Html::submitButton('Отправить', ['class' => 'super normal button']);?>
 <div class="c"></div>
 <div class="sep5"></div>
  <?php ActiveForm::end(); ?>
