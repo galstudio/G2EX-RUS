@@ -36,15 +36,15 @@ class SignupForm extends Model
         $rules = [
             [['username', 'email', 'invite_code'], 'trim'],
             [['username', 'email', 'password', 'password_repeat'], 'required'],
-            ['username', 'match', 'pattern' => User::USERNAME_PATTERN, 'message' => '请使用字母(a-z),数字(0-9)或中文'],
+            ['username', 'match', 'pattern' => User::USERNAME_PATTERN, 'message' => 'используйте буквы (a-z) и/или цифры (0-9)'],
 //            ['username', 'string', 'length' => [4, 20]],
             ['username', 'validateMbString'],
             ['username', 'validateFilter'],
             ['email', 'email'],
             ['password', 'string', 'length' => [6, 16]],
-            ['password_repeat', 'compare', 'skipOnEmpty'=>false, 'compareAttribute'=>'password', 'message' => '两次密码输入不一致'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => '用户名已存在'],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => '邮箱已存在'],
+            ['password_repeat', 'compare', 'skipOnEmpty'=>false, 'compareAttribute'=>'password', 'message' => 'Пароли не совпадают'],
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой логин уже зарегистрирован'],
+            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Такой Email уже зарегистрирован'],
             ['invite_code', 'validateInviteCode'],
         ];
         if($this->action !== self::ACTION_AUTH_SIGNUP && intval(Yii::$app->params['settings']['captcha_enabled']) === 1) {
@@ -60,7 +60,7 @@ class SignupForm extends Model
     {
         $len = strlen(preg_replace("/[\x{4e00}-\x{9fa5}]/u", '**', $this->$attribute));
         if ($len<4 || $len>16) {
-            $this->addError($attribute, '用户名长度为4到16位，1个中文等于2位');
+            $this->addError($attribute, 'Длина логина должна быть от 4 до 16 знаков');
         }
     }
 
@@ -74,7 +74,7 @@ class SignupForm extends Model
             $pattern = str_replace('*', '.*', $filter);
             $result = preg_match('/^' . $pattern . '$/is', $this->$attribute);
             if ( !empty($result) ) {
-                $this->addError($attribute, '用户名不能包含'. str_replace('*', '', $filter));
+                $this->addError($attribute, 'Логин не может содержать '. str_replace('*', '', $filter));
                 return;
             }
         }
@@ -86,23 +86,23 @@ class SignupForm extends Model
                     ->where(['token'=>$this->$attribute, 'type'=>Token::TYPE_INVITE_CODE])
                     ->one();
         if (!$this->_inviteCode) {
-            $this->addError($attribute, '邀请码不正确');
+            $this->addError($attribute, 'Неверный код');
         } else if ($this->_inviteCode->status != Token::STATUS_VALID) {
-            $this->addError($attribute, '此邀请码已被使用');
+            $this->addError($attribute, 'Этот код уже был использован');
         } else if ($this->_inviteCode->expires > 0 && $this->_inviteCode->expires < time()) {
-            $this->addError($attribute, '此邀请码已过期');
+            $this->addError($attribute, 'Срок действия этого кода истек');
         }
     }
 
     public function attributeLabels()
     {
         return [
-            'username' => '用户名',
-            'email' => '电子邮件',
-            'password' => '密码',
-            'password_repeat' => '确认密码',
-            'invite_code' => '邀请码',
-            'captcha' => '验证码',
+            'username' => 'Логин',
+            'email' => 'Email',
+            'password' => 'Пароль',
+            'password_repeat' => 'Пароль еще раз',
+            'invite_code' => 'Инвайт',
+            'captcha' => 'Код',
         ];
     }
 
