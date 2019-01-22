@@ -31,7 +31,7 @@ class CommentController extends CommonController
         if ($model !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('未找到id为['.$id.']的回复');
+            throw new NotFoundHttpException('Идентификатор не найден для ['.$id.']');
         }
     }
 }

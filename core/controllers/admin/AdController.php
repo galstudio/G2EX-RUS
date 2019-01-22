@@ -67,7 +67,7 @@ class AdController extends CommonController
         if (($model = Ad::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('未找到id为['.$id.']的广告');
+            throw new NotFoundHttpException('Не найдено записей с ['.$id.'] идентификатором');
         }
     }
 

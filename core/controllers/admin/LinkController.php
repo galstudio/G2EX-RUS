@@ -69,7 +69,7 @@ class LinkController extends CommonController
         if (($model = Link::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('未找到id为['.$id.']的链接');
+            throw new NotFoundHttpException('Ссылка с идентификатором ['.$id.'] не найдена');
         }
     }
 
