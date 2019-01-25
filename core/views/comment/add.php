@@ -19,7 +19,7 @@ $editorClass = '\app\plugins\\'. $settings['editor']. '\\'. ucfirst($settings['e
 $editor = new $editorClass();
 $editor->registerAsset($this);
 
-$this->title = '添加回复';
+$this->title = 'Добавление комментария';
 ?>
 
 <div class="row">
@@ -27,17 +27,17 @@ $this->title = '添加回复';
 
 <div class="panel panel-default sf-box">
 	<div class="panel-body">
-		<?php echo Html::a('首页', ['topic/index']), '&nbsp;/&nbsp;', Html::a(Html::encode($topic['node']['name']), ['topic/node', 'name'=>$topic['node']['ename']]); ?>
+		<?php echo Html::a('Главная', ['topic/index']), '&nbsp;/&nbsp;', Html::a(Html::encode($topic['node']['name']), ['topic/node', 'name'=>$topic['node']['ename']]); ?>
 		<h3><?php echo Html::a(Html::encode($topic['title']), ['topic/view', 'id'=>$topic['id']]); ?></h3>
 		<small class="gray">
-		<?php echo 'by ', SfHtml::uLink($topic['author']['username']), 
+		<?php echo 'by ', SfHtml::uLink($topic['author']['username']),
 			'  •  ', Yii::$app->getFormatter()->asRelativeTime($topic['created_at']); ?>
 		</small>
 	</div>
 </div>
 
 <div class="panel panel-default sf-box">
-    <div class="panel-heading">添加回复</div>
+    <div class="panel-heading">Добавление комментария</div>
     <div class="panel-body">
 <?php
 if ( $session->hasFlash('postNG') ) {
@@ -52,11 +52,11 @@ echo Alert::widget([
     echo $form->field($comment, 'content')->textArea(['id'=>'editor', 'maxlength'=>20000])->label(false);
     if($me->canUpload($settings)) {
         $editor->registerUploadAsset($this);
-        echo '<div class="form-group"><div id="fileuploader">图片上传</div></div>';
+        echo '<div class="form-group"><div id="fileuploader">Загрузка изображения</div></div>';
     }
 ?>
     <div class="form-group">
-        <?php echo Html::submitButton('<i class="fa fa-reply"></i>回复', ['class' => 'btn btn-primary']); ?>
+        <?php echo Html::submitButton('<i class="fa fa-reply" title="Ответить"></i>', ['class' => 'btn btn-primary']); ?>
     </div>
 <?php ActiveForm::end(); ?> </div>
 </div>

@@ -17,7 +17,7 @@ $editorClass = '\app\plugins\\'. $settings['editor']. '\\'. ucfirst($settings['e
 $editor = new $editorClass();
 $editor->registerAsset($this);
 
-$this->title = '修改回复';
+$this->title = 'Правка комментария';
 ?>
 
 <div class="row">
@@ -25,31 +25,31 @@ $this->title = '修改回复';
 
 <div class="panel panel-default sf-box">
 	<div class="panel-body">
-		<?php echo Html::a('首页', ['topic/index']), '&nbsp;/&nbsp;', Html::a(Html::encode($topic['node']['name']), ['topic/node', 'name'=>$topic['node']['ename']]); ?>
+		<?php echo Html::a('Главная', ['topic/index']), '&nbsp;/&nbsp;', Html::a(Html::encode($topic['node']['name']), ['topic/node', 'name'=>$topic['node']['ename']]); ?>
 		<h3><?php echo Html::encode($topic['title']); ?></h3>
 		<small class="gray">
-		<?php echo 'by ', SfHtml::uLink($topic['author']['username']), 
+		<?php echo 'by ', SfHtml::uLink($topic['author']['username']),
 			'  •  ', Yii::$app->getFormatter()->asRelativeTime($topic['created_at']); ?>
 		</small>
 	</div>
 </div>
 
 <div class="panel panel-default sf-box">
-	<div class="panel-heading">修改回复</div>
+	<div class="panel-heading">Правка комментария</div>
 	<div class="panel-body">
 <?php $form = ActiveForm::begin(); ?>
 <?php
 	if($me->isAdmin()) {
-	 	echo $form->field($comment, 'invisible')->dropDownList(['公开回复', '屏蔽回复'])->label(false);
+	 	echo $form->field($comment, 'invisible')->dropDownList(['Публичный', 'Личный'])->label(false);
 	}
 	echo $form->field($comment, 'content')->textArea(['id'=>'editor', 'maxlength'=>30000])->label(false);
 	if($me->canUpload($settings)) {
 		$editor->registerUploadAsset($this);
-		echo '<div class="form-group"><div id="fileuploader">图片上传</div></div>';
+		echo '<div class="form-group"><div id="fileuploader">Загрузка изображения</div></div>';
 	}
 ?>
     <div class="form-group">
-        <?php echo Html::submitButton('<i class="fa fa-pencil-square-o"></i>修改', ['class' => 'btn btn-primary']); ?>
+        <?php echo Html::submitButton('<i class="fa fa-pencil-square-o" title="Правка"></i>', ['class' => 'btn btn-primary']); ?>
     </div>
 
 <?php ActiveForm::end(); ?>	</div>
