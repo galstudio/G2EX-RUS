@@ -12,13 +12,13 @@ $settings = Yii::$app->params['settings'];
 $url = Url::to(['site/verify-email', 'token'=>$token->token], true);
 
 ?>
-<?php echo $settings['site_name']; ?> 会员，您好<br />
+<?php echo $settings['site_name']; ?>Привет, пользователь!<br />
 <br />
-您申请了绑定新邮箱，请点击以下链接确认：<br />
+Ты подал заявку на изменение email, нажми на ссылку ниже, чтобы подтвердить действие:<br />
 <?php echo Html::a($url, $url); ?><br />
 <br />
-感谢您的访问，祝您使用愉快！<br />
+Спасибо за твой визит и желаю тебе успехов!<br />
 <br />
-此致<br />
-<?php echo $settings['site_name']; ?> 管理团队<br />
+С уважением,<br />
+<?php echo $settings['site_name']; ?> команда сайта<br />
 <?php echo Yii::$app->getRequest()->getHostInfo(); ?><br />
