@@ -42,13 +42,13 @@ class Plugin extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pid' => '插件ID',
-            'name' => '插件名',
-            'author' => '作者',
-            'url' => '网址',
-            'version' => '版本',
-            'description' => '描述',
-            'status' => '状态',
+            'pid' => 'ID',
+            'name' => 'Логин',
+            'author' => 'Автор',
+            'url' => 'URL',
+            'version' => 'Версия',
+            'description' => 'Описание',
+            'status' => 'Статус',
         ];
     }
 }
