@@ -43,11 +43,11 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sortid' => '排序',
-            'name' => '单页名',
-            'ename' => '单页英文名',
-            'url' => '跳转网址',
-            'content' => '内容',
+            'sortid' => 'Сортировать',
+            'name' => 'Название',
+            'ename' => 'Название (анг.)',
+            'url' => 'URL-адрес',
+            'content' => 'Содержание',
         ];
     }
 
